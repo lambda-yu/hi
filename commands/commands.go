@@ -17,8 +17,10 @@ var (
 	TransferCommand = &cli.Command{
 		Name: "Transfer",
 		Subcommands: []*cli.Command{
+			one2OneCommand,
 			one2ManyCommand,
 			many2ManyCommand,
+			many2OneCommand,
 		},
 	}
 )
@@ -27,12 +29,22 @@ var (
 var (
 	one2ManyCommand = &cli.Command{
 		Name:   "OneToMany",
-		Flags:  config.TransferFlags,
+		Flags:  config.TransferOne2ManyFlags,
+		Action: transfer.ClientWrapHandle(transfer.HandleOne2One),
+	}
+	one2OneCommand = &cli.Command{
+		Name:   "OneToMany",
+		Flags:  config.TransferOne2OneFlags,
 		Action: transfer.ClientWrapHandle(transfer.HandleOne2One),
 	}
 	many2ManyCommand = &cli.Command{
 		Name:   "ManyToMany",
 		Flags:  config.TransferMany2ManyFlags,
 		Action: transfer.ClientWrapHandle(transfer.HandleMany2Many),
+	}
+	many2OneCommand = &cli.Command{
+		Name:   "ManyToOne",
+		Flags:  config.TransferMany2OneFlags,
+		Action: transfer.ClientWrapHandle(transfer.HandleMany2One),
 	}
 )

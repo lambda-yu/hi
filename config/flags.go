@@ -41,14 +41,11 @@ var (
 // transfer util flag
 var (
 	TransferRecipientFlag = &cli.StringSliceFlag{
-		Name:  "recipient",
-		Usage: "receiver address",
+		Name:     "recipient",
+		Usage:    "receiver address",
+		Required: true,
 	}
-	TransferRecipientFileFlag = &cli.PathFlag{
-		Name:  "recipients",
-		Usage: "receiver address",
-	}
-	TransferSenderFlag = &cli.StringFlag{
+	TransferSenderFlag = &cli.StringSliceFlag{
 		Name:     "sender",
 		Usage:    "sender private",
 		Required: true,
@@ -79,7 +76,17 @@ var (
 	}
 )
 
-var TransferFlags = []cli.Flag{
+var TransferOne2ManyFlags = []cli.Flag{
+	NodeURL,
+	ChainID,
+	TransferSenderFlag,
+	TransferAmountFlag,
+	TransferGasLimitFlag,
+	TransferLoopTimesFlag,
+	TransferRecipientAccountFileFlag,
+}
+
+var TransferOne2OneFlags = []cli.Flag{
 	NodeURL,
 	ChainID,
 	TransferRecipientFlag,
@@ -87,7 +94,6 @@ var TransferFlags = []cli.Flag{
 	TransferAmountFlag,
 	TransferGasLimitFlag,
 	TransferLoopTimesFlag,
-	TransferRecipientFileFlag,
 }
 
 var TransferMany2ManyFlags = []cli.Flag{
@@ -95,6 +101,16 @@ var TransferMany2ManyFlags = []cli.Flag{
 	ChainID,
 	TransferSendAccountFileFlag,
 	TransferRecipientAccountFileFlag,
+	TransferAmountFlag,
+	TransferGasLimitFlag,
+	TransferLoopTimesFlag,
+}
+
+var TransferMany2OneFlags = []cli.Flag{
+	NodeURL,
+	ChainID,
+	TransferSendAccountFileFlag,
+	TransferRecipientFlag,
 	TransferAmountFlag,
 	TransferGasLimitFlag,
 	TransferLoopTimesFlag,

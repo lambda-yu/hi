@@ -28,12 +28,12 @@ var (
 // transfer subcommand
 var (
 	one2ManyCommand = &cli.Command{
-		Name:   "OneToOne",
+		Name:   "OneToMany",
 		Flags:  config.TransferOne2ManyFlags,
 		Action: transfer.ClientWrapHandle(transfer.HandleOne2One),
 	}
 	one2OneCommand = &cli.Command{
-		Name:   "OneToMany",
+		Name:   "OneToOne",
 		Flags:  config.TransferOne2OneFlags,
 		Action: transfer.ClientWrapHandle(transfer.HandleOne2One),
 	}

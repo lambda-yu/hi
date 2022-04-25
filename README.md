@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# hi
-=======
 <h1 align="center">Welcome to hi 👋</h1>
 
 > 一个以太坊类型公链的命令行工具，可以进行快速address创建，原生币的一对一、一对多、多对一、多对多转账。
@@ -52,4 +49,3 @@ Give a ⭐️ if this project helped you!
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
->>>>>>> dev

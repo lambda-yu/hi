@@ -21,7 +21,7 @@ func HandleGenerateCmd(c *cli.Context) error {
 		number = 1
 	}
 
-	err := generate(number, keys)
+	keys, err := generate(number)
 	if err != nil {
 		return err
 	}
@@ -40,21 +40,22 @@ func HandleGenerateCmd(c *cli.Context) error {
 	return file.Save(pathStr, keys)
 }
 
-func generate(num int64, accounts []file.Account) error {
+func generate(num int64) ([]file.Account, error) {
+	var accounts []file.Account
 	for i := int64(0); i < num; i++ {
 		privateKey, err := crypto.GenerateKey()
 		if err != nil {
-			return err
+			return nil, err
 		}
 
 		publicKey := privateKey.Public()
 		publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
 		if !ok {
-			return fmt.Errorf("error casting public key to ECDSA")
+			return nil, fmt.Errorf("error casting public key to ECDSA")
 		}
 
 		address := crypto.PubkeyToAddress(*publicKeyECDSA).Hex()
 		accounts = append(accounts, file.Account{Address: common.HexToAddress(address), PrivateKey: privateKey})
 	}
-	return nil
+	return accounts, nil
 }

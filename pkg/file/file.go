@@ -22,7 +22,6 @@ func (a Account) PrivateHex() string {
 
 func Save(path string, keys []Account) error {
 	var buffer bytes.Buffer
-
 	for _, key := range keys {
 		msg := fmt.Sprintf("%s %s\n", key.Address, key.PrivateHex())
 		buffer.Write([]byte(msg))

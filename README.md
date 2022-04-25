@@ -26,15 +26,14 @@
 
 
 # Prerequisites
-***
+
 ## Install
-***
 ```shell
 go mod download
 ```
 
 ## Build
-***
+
 ```shell
 make build
 ```

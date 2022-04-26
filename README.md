@@ -4,7 +4,8 @@
 
 # Roadmap
 ## account
-- [x] 批量创建
+- [x] 批量创建账号
+- [ ] 批量创建keystore
 
 ## transfer
 ### native

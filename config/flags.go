@@ -17,11 +17,23 @@ var (
 		Usage:    "Number of create accounts",
 		Required: true,
 	}
+	AccountPswFlag = &cli.StringFlag{
+		Name:     "password",
+		Aliases:  []string{"p"},
+		Usage:    "key store password",
+		Required: true,
+	}
 )
 
 var AccountFlags = []cli.Flag{
 	AccountNumberFlag,
 	AccountSavePathFlag,
+}
+
+var KeystoreFlags = []cli.Flag{
+	AccountNumberFlag,
+	AccountSavePathFlag,
+	AccountPswFlag,
 }
 
 // eth client flag
@@ -41,23 +53,28 @@ var (
 // transfer util flag
 var (
 	TransferRecipientFlag = &cli.StringSliceFlag{
-		Name:     "recipient",
+		Name:     "to",
 		Usage:    "receiver address",
 		Required: true,
 	}
 	TransferSenderFlag = &cli.StringSliceFlag{
-		Name:     "sender",
+		Name:     "from",
 		Usage:    "sender private",
 		Required: true,
 	}
 	TransferSendAccountFileFlag = &cli.PathFlag{
-		Name:     "sendAccounts",
-		Usage:    "path of send account file",
+		Name:     "fromAccounts",
+		Usage:    "path of from account file",
 		Required: true,
 	}
 	TransferRecipientAccountFileFlag = &cli.PathFlag{
-		Name:     "recipientAccounts",
-		Usage:    "path of recipient account file",
+		Name:     "toAccounts",
+		Usage:    "path of to account file",
+		Required: true,
+	}
+	TransferSenderWalletFlag = &cli.PathFlag{
+		Name:     "fromWallet",
+		Usage:    "path of to wallet file",
 		Required: true,
 	}
 	TransferAmountFlag = &cli.StringFlag{
@@ -67,7 +84,7 @@ var (
 	}
 	TransferLoopTimesFlag = &cli.IntFlag{
 		Name:  "loop",
-		Usage: "transfer execute number of cycle, if 0 then infinite loop",
+		Usage: "transfer execute number of loop, if 0 then infinite loop",
 		Value: 1,
 	}
 	TransferGasLimitFlag = &cli.Uint64Flag{
